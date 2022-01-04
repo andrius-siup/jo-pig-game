@@ -53,15 +53,20 @@ btnRoll.addEventListener('click', function () {
 });
 
 btnHold.addEventListener('click', function () {
-  console.log('hold btn');
+  // console.log('hold btn');
   // Add current score to active player's score
   // scores[1] = scores[1] + currentScore;
   scores[activePlayer] += currentScore;
-  document.getElementById(`current--${activePlayer}`).textContent = scores[activePlayer];
-  console.log(scores[activePlayer]);
+  document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+  // console.log(scores[activePlayer]);
 
   // Check if player's score is >= 100
-  // Finish game
+
+  if (scores[activePlayer] >= 20) {
+    // Finish game
+    document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
+    document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
+  }
 
   // Switch to the next player
   switchPlayer();
